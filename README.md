@@ -15,4 +15,3 @@ python run_worker.py
 
 ## Todo
 - Integrate this code with optimization alg
-- Storage result files in cloud

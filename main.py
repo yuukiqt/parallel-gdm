@@ -3,6 +3,7 @@ from send_to_workers import send_cmd_worker
 from pc_check import get_ip_addr, result_dir, unzip_data, clear_cache
 from file_server import load_fileserver
 from file_client import send_files_to_host
+from log_results import move_results_to_log, results_log_dir
 import settings
 
 import time
@@ -32,13 +33,21 @@ def send_res_files():
             time.sleep((con-1)*7) # 7 sec delay
         send_files_to_host()
 
+def log_files():
+    results_log_dir()
+    move_results_to_log()
+
 def pipeline():
     prep_process()
     if get_ip_addr() in settings.hosts:
         send_all_workers()
     start_process()
-    clear_cache()
     send_res_files()
+
+    if get_ip_addr() in settings.hosts:
+        log_files()
+
+    clear_cache()
 
 if __name__ == "__main__":
     pipeline()
