@@ -2,7 +2,6 @@ import socket
 import time
 
 import settings
-import autogui
 
 def send_files_to_host(host_ip=settings.hosts[0],
                port=12345):
@@ -13,7 +12,7 @@ def send_files_to_host(host_ip=settings.hosts[0],
     client_socket.connect((host_ip, port))
 
     # Get the filename to transfer
-    filename = autogui.resname
+    filename = f"sim_pc{(settings.hosts + settings.workers).index(get_ip_addr())}.txt"
     time.sleep(3)
 
     # Send the filename to the server

@@ -5,6 +5,8 @@ from file_server import load_fileserver
 from file_client import send_files_to_host
 import settings
 
+import time
+
 def prep_process():
     result_dir()
     unzip_data()

@@ -33,7 +33,7 @@ def open_model():
     pg.hotkey('enter')
 
 def run_simulation():
-    time.sleep(5)
+    time.sleep(8)
     pg.click(338, 77)
 
 def wait_simulation():
@@ -49,8 +49,7 @@ def save_res():
     pg.hotkey("ctrlleft", "a")
     pg.hotkey("backspace")
 
-    resname = f"sim_pc{(settings.hosts + settings.workers).index(get_ip_addr())}.txt"
-    pg.typewrite(rf"C:\Users\Sirius\Desktop\project\results\{resname}")
+    pg.typewrite(rf"C:\Users\Sirius\Desktop\project\results\sim_pc{(settings.hosts + settings.workers).index(get_ip_addr())}.txt")
 
 
     # click load selection
