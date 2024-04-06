@@ -2,6 +2,7 @@ import socket
 import time
 
 import settings
+from pc_check import get_ip_addr
 
 def send_files_to_host(host_ip=settings.hosts[0],
                port=12345):
