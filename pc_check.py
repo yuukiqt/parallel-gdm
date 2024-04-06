@@ -1,6 +1,7 @@
 import socket
 import os
 import zipfile
+import shutil
 
 import settings 
 
@@ -15,8 +16,14 @@ def result_dir():
     except FileExistsError:
         print('Folder results already created')
 
-def unzip_data():    
-    with zipfile.ZipFile('data.zip', 'r') as zip_ref:
-        zip_ref.extractall()
+def unzip_data(): 
+    if os.path.exists('data'):
+        pass # insert new file after optimize
+    else:
+        with zipfile.ZipFile('data.zip', 'r') as zip_ref:
+            zip_ref.extractall()
+
+def clear_cache():
+    shutil.rmtree('__pycache__')
 
 pc_count = len(settings.workers) + len(settings.hosts)
