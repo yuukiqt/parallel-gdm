@@ -1,4 +1,5 @@
 #!/bin/bash
+
 while true; do
     echo "Choose an option:"
     echo "1. Start node service"
@@ -14,7 +15,7 @@ while true; do
             ;;
         2)
             echo "Stopping node service..."
-            pid=$(pgrep -f "python run_worker.py")
+            pid=$(ps | grep "task_8" | awk '{print $1}')
             if [ -n "$pid" ]; then
                 kill "$pid"
                 echo "Node service stopped."
