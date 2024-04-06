@@ -2,7 +2,7 @@ from autogui import run_app, open_model, run_simulation, wait_simulation, save_r
 from send_to_workers import send_cmd_worker
 from pc_check import get_ip_addr, result_dir, unzip_data, clear_cache
 from file_server import load_fileserver
-from file_client import send
+from file_client import send_files_to_host
 import settings
 
 def prep_process():
@@ -36,6 +36,7 @@ def pipeline():
         send_all_workers()
     start_process()
     clear_cache()
+    send_res_files()
 
 if __name__ == "__main__":
     pipeline()
