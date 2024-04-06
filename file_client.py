@@ -1,5 +1,6 @@
 import socket
 import time
+import os
 
 import settings
 from pc_check import get_ip_addr
@@ -20,6 +21,8 @@ def send_files_to_host(host_ip=settings.hosts[0],
             if not data:
                 break
             client_socket.send(data)
+            
+    os.remove(filename)
     print("File transfered.")
     
     client_socket.close()
