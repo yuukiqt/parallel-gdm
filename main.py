@@ -27,9 +27,9 @@ def send_res_files():
         for conn in range(len(settings.workers)):
             load_fileserver()
     else:
-        c_size = (settings.hosts + settings.workers).index(get_ip_addr())
-        if c_size > 1:
-            time.sleep(3)
+        con = (settings.hosts + settings.workers).index(get_ip_addr())
+        if con != 1:
+            time.sleep((con-1)*7) # 7 sec delay
         send_files_to_host()
 
 def pipeline():
