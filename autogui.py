@@ -48,7 +48,9 @@ def save_res():
     pg.click(848, 296)
     pg.hotkey("ctrlleft", "a")
     pg.hotkey("backspace")
-    pg.typewrite(rf"C:\Users\Sirius\Desktop\project\results\sim_pc{(settings.hosts + settings.workers).index(get_ip_addr())}.txt")
+
+    resname = f"sim_pc{(settings.hosts + settings.workers).index(get_ip_addr())}.txt"
+    pg.typewrite(rf"C:\Users\Sirius\Desktop\project\results\{resname}")
 
 
     # click load selection
