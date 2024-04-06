@@ -13,7 +13,7 @@ def send_files_to_host(host_ip=settings.hosts[0],
     client_socket.connect((host_ip, port))
 
     # Get the filename to transfer
-    filename = f"sim_pc{(settings.hosts + settings.workers).index(get_ip_addr())}.txt"
+    filename = rf"results\sim_pc{(settings.hosts + settings.workers).index(get_ip_addr())}.txt"
     time.sleep(3)
 
     # Send the filename to the server
