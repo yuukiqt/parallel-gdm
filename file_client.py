@@ -2,9 +2,9 @@ import socket
 import time
 
 import settings
-from autogui import resname
+import autogui
 
-def send_files_to_host(host_ip=settings.host_ip[0],
+def send_files_to_host(host_ip=settings.hosts[0],
                port=12345):
     # Create a socket object
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -13,7 +13,7 @@ def send_files_to_host(host_ip=settings.host_ip[0],
     client_socket.connect((host_ip, port))
 
     # Get the filename to transfer
-    filename = resname
+    filename = autogui.resname
     time.sleep(3)
 
     # Send the filename to the server

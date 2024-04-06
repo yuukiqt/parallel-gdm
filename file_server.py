@@ -2,7 +2,7 @@ import socket
 
 import settings
 
-def load_fileserver(host_ip=settings.host_ip[0],
+def load_fileserver(host_ip=settings.hosts[0],
                     port=12345):
     # Create a socket object
     server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
