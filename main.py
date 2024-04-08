@@ -57,9 +57,7 @@ def log_files():
 
 def pipeline():
     prep_process()
-    if curr_epoch == 1:
-        send_files_to_workers()
-
+    
     if get_ip_addr() in settings.hosts:
         send_all_workers()
         
