@@ -19,6 +19,8 @@ df = pd.DataFrame([line.split() for line in data_lines], columns=['SW', 'Krw', '
 
 df = df.astype(float)
 
+df.loc[1, ['SW', 'Krw']] = [random.uniform(0.078, 0.32), random.uniform(0,0.024)]
+
 previous_row = df.iloc[10]
 random_value1 = random.uniform(previous_row['SW'], 0.99)
 random_value2 = random.uniform(previous_row['Krw'], 0.99)
@@ -26,8 +28,6 @@ random_value2 = random.uniform(previous_row['Krw'], 0.99)
 df.loc[11, ['SW', 'Krw']] = [random_value1, random_value2]
 
 df = df.round(6)
-
-print(df)
 
 with open('data/KR_var_1.INC', 'w') as file:
     file.write("SWOF\n\n--SW\tKrw\tKro\tPc\n")
