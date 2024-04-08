@@ -1,7 +1,7 @@
 import os
-from main import epoch
 # from optimizer import epoch_count
 
+epoch = 1
 
 def move_results_to_log():
     res_files = list(os.listdir(r"results"))

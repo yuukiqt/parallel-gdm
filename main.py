@@ -3,7 +3,7 @@ from send_to_workers import send_cmd_worker
 from pc_check import get_ip_addr, result_dir, unzip_data, clear_cache, kill_tnav
 from file_server import load_fileserver
 from file_client import send_files_to_host
-from log_results import move_results_to_log, results_log_dir
+from log_results import move_results_to_log, results_log_dir, epoch
 from optimizer import optim
 import settings
 
@@ -61,7 +61,6 @@ def pipeline():
         load_fileserver(get_ip_addr())
 
 if __name__ == "__main__":
-    epoch = 1
     while epoch < 3:
         pipeline()
         epoch += 1
