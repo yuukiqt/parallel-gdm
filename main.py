@@ -3,7 +3,7 @@ from send_to_workers import send_cmd_worker
 from pc_check import get_ip_addr, result_dir, unzip_data, clear_cache, kill_tnav
 from file_server import load_fileserver
 from file_client import send_files_to_host
-from log_results import move_results_to_log, results_log_dir, epoch
+from log_results import move_results_to_log, results_log_dir
 from optimizer import optim
 import settings
 
@@ -36,7 +36,7 @@ def send_res_files():
 
 def log_files():
     results_log_dir()
-    move_results_to_log()
+    move_results_to_log(epoch)
 
 def pipeline():
     prep_process()
@@ -49,7 +49,6 @@ def pipeline():
         log_files()
 
     kill_tnav()
-    clear_cache()
 
     if get_ip_addr() in settings.hosts:
         for worker in settings.workers:
@@ -60,7 +59,11 @@ def pipeline():
     else:
         load_fileserver(get_ip_addr())
 
+    time.sleep(2)
+
 if __name__ == "__main__":
+    epoch = 1
     while epoch < 3:
         pipeline()
         epoch += 1
+    clear_cache()
