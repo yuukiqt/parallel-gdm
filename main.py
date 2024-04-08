@@ -4,6 +4,7 @@ from pc_check import get_ip_addr, result_dir, unzip_data, clear_cache, kill_tnav
 from file_server import load_fileserver
 from file_client import send_files_to_host
 from log_results import move_results_to_log, results_log_dir
+from optimizer import optim
 import settings
 
 import time
@@ -47,8 +48,16 @@ def pipeline():
     if get_ip_addr() in settings.hosts:
         log_files()
 
-    clear_cache()
     kill_tnav()
+    clear_cache()
+
+    if get_ip_addr() in settings.hosts:
+        for worker in settings.workers:
+            optim()
+            time.sleep(4)
+            send_files_to_host(worker)
+    else:
+        load_fileserver(get_ip_addr())
 
 if __name__ == "__main__":
     pipeline()

@@ -10,7 +10,10 @@ def send_files_to_host(host_ip=settings.hosts[0],
     client_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client_socket.connect((host_ip, port))
 
-    filename = rf"results\sim_pc{(settings.hosts + settings.workers).index(get_ip_addr())}.txt"
+    if host_ip in settings.hosts:
+        filename = rf"results\sim_pc{(settings.hosts + settings.workers).index(get_ip_addr())}.txt"
+    else:
+        filename = rf"data\KR_var_1.INC"
     time.sleep(5) # delay for read file
 
     client_socket.send(filename.encode())
