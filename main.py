@@ -41,7 +41,7 @@ def send_res_files():
             time.sleep((con-1)*8) # 8 sec delay
         send_files_to_host()
 
-def send_files_to_workers:
+def send_files_to_workers():
     if get_ip_addr() in settings.hosts:
         for worker in settings.workers:
             optim()
