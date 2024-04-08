@@ -41,22 +41,7 @@ def send_res_files():
             time.sleep((con-1)*8) # 8 sec delay
         send_files_to_host()
 
-def log_files():
-    results_log_dir()
-    move_results_to_log(curr_epoch)
-
-def pipeline():
-    prep_process()
-    if get_ip_addr() in settings.hosts:
-        send_all_workers()
-    start_process()
-    send_res_files()
-
-    if get_ip_addr() in settings.hosts:
-        log_files()
-
-    kill_tnav()
-
+def send_files_to_workers:
     if get_ip_addr() in settings.hosts:
         for worker in settings.workers:
             optim()
@@ -65,6 +50,28 @@ def pipeline():
         optim()
     else:
         load_fileserver(get_ip_addr())
+
+def log_files():
+    results_log_dir()
+    move_results_to_log(curr_epoch)
+
+def pipeline():
+    prep_process()
+    if curr_epoch == 1:
+        send_files_to_workers()
+
+    if get_ip_addr() in settings.hosts:
+        send_all_workers()
+        
+    start_process()
+    send_res_files()
+
+    if get_ip_addr() in settings.hosts:
+        log_files()
+
+    kill_tnav()
+
+    send_files_to_workers()
 
     time.sleep(2)
 
