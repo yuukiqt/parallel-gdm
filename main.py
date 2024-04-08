@@ -8,6 +8,12 @@ from optimizer import optim
 import settings
 
 import time
+import argparse
+
+def help():
+    parser = argparse.ArgumentParser(description='GDM parallel.')
+    parser.add_argument('--epoch', type=int, help='Count of launchs')
+    args = parser.parse_args()
 
 def prep_process():
     result_dir()
@@ -62,9 +68,10 @@ def pipeline():
     time.sleep(2)
 
 if __name__ == "__main__":
+    help()
     if get_ip_addr() in settings.hosts:
         epoch = 1
-        while epoch < 3:
+        while epoch <= args.epoch:
             pipeline()
             epoch += 1
     else:
