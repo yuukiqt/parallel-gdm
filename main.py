@@ -53,7 +53,7 @@ def pipeline():
     if get_ip_addr() in settings.hosts:
         for worker in settings.workers:
             optim()
-            time.sleep(4)
+            time.sleep(2)
             send_files_to_host(worker)
         optim()
     else:
@@ -62,8 +62,11 @@ def pipeline():
     time.sleep(2)
 
 if __name__ == "__main__":
-    epoch = 1
-    while epoch < 3:
+    if get_ip_addr() in settings.hosts:
+        epoch = 1
+        while epoch < 3:
+            pipeline()
+            epoch += 1
+    else:
         pipeline()
-        epoch += 1
     clear_cache()
