@@ -37,7 +37,7 @@ def run_simulation():
     pg.click(338, 77)
 
 def wait_simulation():
-    time.sleep(75)
+    time.sleep(85)
 
 def save_res():
     # open editor

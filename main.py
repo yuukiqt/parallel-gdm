@@ -14,6 +14,7 @@ def help():
     parser = argparse.ArgumentParser(description='GDM parallel.')
     parser.add_argument('--epoch', type=int, help='Count of launchs')
     args = parser.parse_args()
+    return args.epoch
 
 def prep_process():
     result_dir()
@@ -42,7 +43,7 @@ def send_res_files():
 
 def log_files():
     results_log_dir()
-    move_results_to_log(epoch)
+    move_results_to_log(curr_epoch)
 
 def pipeline():
     prep_process()
@@ -68,12 +69,12 @@ def pipeline():
     time.sleep(2)
 
 if __name__ == "__main__":
-    help()
+    epoch = help()
     if get_ip_addr() in settings.hosts:
-        epoch = 1
-        while epoch <= args.epoch:
+        curr_epoch = 1
+        while curr_epoch <= epoch:
             pipeline()
-            epoch += 1
+            curr_epoch += 1
     else:
         pipeline()
     clear_cache()
