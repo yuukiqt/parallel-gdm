@@ -56,6 +56,7 @@ def pipeline():
             optim()
             time.sleep(4)
             send_files_to_host(worker)
+        optim()
     else:
         load_fileserver(get_ip_addr())
 

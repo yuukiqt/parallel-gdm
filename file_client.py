@@ -25,7 +25,8 @@ def send_files_to_host(host_ip=settings.hosts[0],
                 break
             client_socket.send(data)
             
-    os.remove(filename)
+    if filename != "data\KR_var_1.INC" :
+        os.remove(filename)
     print("File transfered.")
     
     client_socket.close()

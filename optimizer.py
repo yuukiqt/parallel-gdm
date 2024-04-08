@@ -2,7 +2,7 @@ import pandas as pd
 import random
 
 def optim():
-    with open('data/KR_var_1.INC', 'r') as file:
+    with open('data\KR_var_1.INC', 'r') as file:
         lines = file.readlines()
 
     data_lines = []
@@ -30,7 +30,7 @@ def optim():
 
     df = df.round(6)
 
-    with open('data/KR_var_1.INC', 'w') as file:
+    with open(r'data\KR_var_1.INC', 'w') as file:
         file.write("SWOF\n\n--SW\tKrw\tKro\tPc\n")
         for index, row in df.iterrows():
             file.write(f"{row['SW']}\t{row['Krw']}\t{row['Kro']}\t{row['Pc']}\n")
