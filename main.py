@@ -61,4 +61,7 @@ def pipeline():
         load_fileserver(get_ip_addr())
 
 if __name__ == "__main__":
-    pipeline()
+    epoch = 1
+    while epoch < 3:
+        pipeline()
+        epoch += 1
