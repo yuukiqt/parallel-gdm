@@ -11,7 +11,7 @@ def send_files_to_host(host_ip=settings.hosts[0],
     client_socket.connect((host_ip, port))
 
     filename = rf"results\sim_pc{(settings.hosts + settings.workers).index(get_ip_addr())}.txt"
-    time.sleep(3) # delay for read file
+    time.sleep(5) # delay for read file
 
     client_socket.send(filename.encode())
 

@@ -26,4 +26,7 @@ def unzip_data():
 def clear_cache():
     shutil.rmtree('__pycache__')
 
+def kill_tnav():
+    os.system('taskkill /f /im tNavigator222.exe')
+
 pc_count = len(settings.workers) + len(settings.hosts)

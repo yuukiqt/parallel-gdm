@@ -1,6 +1,6 @@
 from autogui import run_app, open_model, run_simulation, wait_simulation, save_res
 from send_to_workers import send_cmd_worker
-from pc_check import get_ip_addr, result_dir, unzip_data, clear_cache
+from pc_check import get_ip_addr, result_dir, unzip_data, clear_cache, kill_tnav
 from file_server import load_fileserver
 from file_client import send_files_to_host
 from log_results import move_results_to_log, results_log_dir
@@ -30,7 +30,7 @@ def send_res_files():
     else:
         con = (settings.hosts + settings.workers).index(get_ip_addr())
         if con != 1:
-            time.sleep((con-1)*7) # 7 sec delay
+            time.sleep((con-1)*8) # 8 sec delay
         send_files_to_host()
 
 def log_files():
@@ -48,6 +48,7 @@ def pipeline():
         log_files()
 
     clear_cache()
+    kill_tnav()
 
 if __name__ == "__main__":
     pipeline()
