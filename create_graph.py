@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 def create_plot():
-    file_path = "results_log\"
+    file_path = "results_log"
 
     files = []
 
@@ -53,8 +53,7 @@ def create_plot():
                             "Date": average_oil_rate.index.values.tolist()}
 
         if files[0] == file:
-        plt.plot(date2stb[file]["Date"], date2stb[file]["Oil Rate (H), stb/day"], label=f'Моделирование исторических данных')
-
+            plt.plot(date2stb[file]["Date"], date2stb[file]["Oil Rate (H), stb/day"], label='Моделирование исторических данных')
         plt.plot(date2stb[file]["Date"], date2stb[file]["Oil Rate, stb/day"], label=file[:-4])
 
 
