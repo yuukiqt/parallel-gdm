@@ -84,5 +84,5 @@ if __name__ == "__main__":
     else:
         pipeline()
     clear_cache()
-    if get_ipp_addr() in settings.hosts:
+    if get_ip_addr() in settings.hosts:
         create_plot()
