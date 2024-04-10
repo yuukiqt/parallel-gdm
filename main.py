@@ -59,8 +59,7 @@ def pipeline():
     
     if get_ip_addr() in settings.hosts:
         send_all_workers()    
-        if curr_epoch == 1:
-            send_files_to_workers()
+    send_files_to_workers()
 
     start_process()
     send_res_files()
