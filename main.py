@@ -5,6 +5,7 @@ from file_server import load_fileserver
 from file_client import send_files_to_host
 from log_results import move_results_to_log, results_log_dir
 from optimizer import optim
+from create_graph from create_plot
 import settings
 
 import time
@@ -83,3 +84,5 @@ if __name__ == "__main__":
     else:
         pipeline()
     clear_cache()
+    if get_ipp_addr() in settings.hosts:
+        create_plot()
