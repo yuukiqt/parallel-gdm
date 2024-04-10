@@ -87,32 +87,28 @@ def replace_columns_in_file(file_path, new_krw_values, new_kro_values, indx):
             lines[i] = '\t'.join(parts) + '\n'
 
     # Запись измененного файла
-    output_file_path = file_path.replace('.INC', f"_modified_{indx}.INC")
-    with open(output_file_path, 'w') as file:
+    with open(file_path, 'w') as file:
         file.writelines(lines)
 
-    return output_file_path
+    return file_path
 
 
+def optim():
+    param_ranges = [(0.7, 1), (1, 4), (0.5, 0.8), (1, 4)]
+    n_samples = 1
+    SW_lab = [0.07, 0.19, 0.25, 0.33, 0.42, 0.52, 0.54, 0.57, 0.59, 0.62, 0.63, 0.64]
+    # значения фазовой проницаемости по воде
+    Krw_lab = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
+    # значения фазовой проницаемости по нефти
+    Kro_lab = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0]
 
+    Kro_model_list, Krw_model_list = get_files(param_ranges, n_samples, SW_lab, Krw_lab, Kro_lab)
 
-param_ranges = [(0.7, 1), (1, 4), (0.5, 0.8), (1, 4)]
-n_samples = 2
-SW_lab = [0.07, 0.19, 0.25, 0.33, 0.42, 0.52, 0.54, 0.57, 0.59, 0.62, 0.63, 0.64]
-# значения фазовой проницаемости по воде
-Krw_lab = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-# значения фазовой проницаемости по нефти
-Kro_lab = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0]
+    file_path = 'data\KR_var_1.INC'
+    with open(file_path, 'r') as file:
+        num_data_lines = sum(1 for line in file if not line.startswith('/') and line.strip() and line.count('\t') >= 3)
 
-Kro_model_list, Krw_model_list = get_files(param_ranges, n_samples, SW_lab, Krw_lab, Kro_lab)
-
-file_path = 'data\KR_var_1.INC'
-with open(file_path, 'r') as file:
-    num_data_lines = sum(1 for line in file if not line.startswith('/') and line.strip() and line.count('\t') >= 3)
-
-for i in range(len(Kro_model_list)):
-
-    # добавляем [0] и [1] - это костыль, сори =(
-    kro_values = Kro_model_list[i] + [0]
-    krw_values = Krw_model_list[i] + [1]
-    modified_file_path = replace_columns_in_file(file_path, krw_values, kro_values, i)
+    for i in range(len(Kro_model_list)):
+        kro_values = Kro_model_list[i] + [0]
+        krw_values = Krw_model_list[i] + [1]
+        modified_file_path = replace_columns_in_file(file_path, krw_values, kro_values, i)
