@@ -61,6 +61,8 @@ def pipeline():
     if get_ip_addr() in settings.hosts:
         send_all_workers()
         
+    send_res_files()
+
     start_process()
     send_res_files()
 
