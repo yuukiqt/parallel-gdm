@@ -61,6 +61,15 @@ def get_files(param_ranges, n_samples, SW_lab, Krw_lab, Kro_lab):
 
     return Kro_model_list, Krw_model_list
 
+def zero_after_first_zero(lst):
+    zero_found = False
+    for i in range(len(lst)):
+        if zero_found:
+            lst[i] = 0
+        elif lst[i] == 0:
+            zero_found = True
+    return lst
+
 def replace_columns_in_file(file_path, new_krw_values, new_kro_values, indx):
     """
     Заменяет второй и третий столбцы в строках с 4 по 16 файла формата INC.
@@ -109,6 +118,6 @@ def optim():
         num_data_lines = sum(1 for line in file if not line.startswith('/') and line.strip() and line.count('\t') >= 3)
 
     for i in range(len(Kro_model_list)):
-        kro_values = Kro_model_list[i] + [0]
+        kro_values = zero_after_first_zero(Kro_model_list[i]) + [0]    
         krw_values = Krw_model_list[i] + [1]
         modified_file_path = replace_columns_in_file(file_path, krw_values, kro_values, i)
