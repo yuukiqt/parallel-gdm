@@ -45,6 +45,7 @@ def send_files_to_workers():
     if get_ip_addr() in settings.hosts:
         for worker in settings.workers:
             optim()
+            time.sleep(2)
             send_files_to_host(worker)
         optim()
     else:
@@ -58,9 +59,8 @@ def pipeline():
     prep_process()
     
     if get_ip_addr() in settings.hosts:
-        send_all_workers()    
-    send_files_to_workers()
-
+        send_all_workers()
+        
     start_process()
     send_res_files()
 
@@ -68,6 +68,9 @@ def pipeline():
         log_files()
 
     kill_tnav()
+
+    send_files_to_workers()
+
     time.sleep(2)
 
 if __name__ == "__main__":
