@@ -5,7 +5,7 @@ from file_server import load_fileserver
 from file_client import send_files_to_host
 from log_results import move_results_to_log, results_log_dir
 from optimizer import optim
-from create_graph from create_plot
+from create_graph import create_plot
 import settings
 
 import time
