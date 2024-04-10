@@ -2,14 +2,15 @@ import pandas as pd
 import os
 import matplotlib.pyplot as plt
 
+from pc_check import pc_count
 
-def create_plot():
+def create_plot(epoch):
     file_path = "results_log"
 
     files = []
 
-    for i in range(3):
-        for j in range(5):
+    for i in range(pc_count):
+        for j in range(epoch):
             files.append(f"sim_pc{i}_ep{j+1}.txt")
 
     date2stb = {}
@@ -60,5 +61,5 @@ def create_plot():
     plt.xlabel('Дата')
     plt.ylabel('Y')
     plt.legend()
-    plt.savefig("results_log\final_results.png")
+    plt.savefig("final_results.png")
     plt.close()

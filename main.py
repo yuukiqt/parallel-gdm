@@ -85,4 +85,4 @@ if __name__ == "__main__":
         pipeline()
     clear_cache()
     if get_ip_addr() in settings.hosts:
-        create_plot()
+        create_plot(epoch)
